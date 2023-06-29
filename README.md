@@ -20,7 +20,7 @@ python generate_candidates.py
 ### Train SimCLS  
 **Note:** SimCLS will generate checkpoint with path: **`./SimCLS/checkpoints/.../scorer.pth`**   
 ```
-python main.py --cuda --gpuid 0 -l --val_step 500 --batch_size 2 --num_val 5000 --candidates_path <candidate folder>
+python main.py --cuda --gpuid 0 -l --val_step 500 --batch_size 2 --num_val 5000 --candidates_path path/to/candidates/folder
 ```
 ### Eval SimCLS 
 ```
