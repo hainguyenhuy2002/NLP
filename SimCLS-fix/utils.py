@@ -14,6 +14,9 @@ class Recorder():
         now = datetime.now()
         date = now.strftime("%y-%m-%d")
         self.dir = os.path.join(PATH, "cache", f"{date}-{id}") #f"{PATH}cache/{date}-{id}"
+        self.dir_state_dict = os.path.join(PATH, "checkpoints", f"{date}-{id}")
+        if not os.path.exists(self.dir_state_dict):
+            os.makedirs(self.dir_state_dict)
         if self.log:
             os.mkdir(self.dir)
             self.f = open(os.path.join(self.dir, "log.txt"), "w")
@@ -58,3 +61,7 @@ class Recorder():
     def save(self, model, name):
         if self.log:
             torch.save(model, os.path.join(self.dir, name))
+            try:
+                torch.save(model.state_dict(), os.path.join(self.dir_state_dict, name))
+            except:
+                print("SAVE MODEL FAILED")
