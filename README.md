@@ -3,7 +3,7 @@
 cd BARTpho
 ```  
 ```
-python train.py --train_data <train file path> --checkpoint_path <checkpoint folder>
+python train.py --train_data path/to/train/data --checkpoint_path path/to/folder/checkpoint
 ```   
 ### Generate candidates in BARTpho
 ```
@@ -11,20 +11,20 @@ cd BARTpho
 ```
 ```
 python generate_candidates.py   
---train_data <train file path>   
---dev_data <dev file path>  
---test_data <test file path>   
---checkpoint_data <checkpoint BARTpho path>   
---save_folder <save folder>
+--train_data path/to/train/data   
+--dev_data path/to/dev/data  
+--test_data path/to/test/data   
+--checkpoint_path path/to/model/checkpoint  
+--save_folder path/to/candidates/folder
 ```
 ### Train SimCLS  
-**Note:** SimCLS will generate checkpoint with path: `SimCLS/checkpoints/.../scorer.pth`   
+**Note:** SimCLS will generate checkpoint with path: **`./SimCLS/checkpoints/.../scorer.pth`**   
 ```
 python main.py --cuda --gpuid 0 -l --val_step 500 --batch_size 2 --num_val 5000 --candidates_path <candidate folder>
 ```
 ### Eval SimCLS 
 ```
-python main.py --cuda --gpuid 0 -e --model_pt <model path> --candidates_path <candidate folder>
+python main.py --cuda --gpuid 0 -e --model_pt ./SimCLS/checkpoints/.../scorer.pth --candidates_path path/to/candidates/folder
 ```
 ### Train Pointer Genrator Model
 ```
