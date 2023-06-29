@@ -63,7 +63,8 @@ def evaluation(args):
     #num_data = 22644
     #data/candidates/save_output
     num_data = args.num_test
-    data_path = os.path.join(PATH, 'data', 'candidates', 'save_output')
+    # data_path = os.path.join(PATH, 'data', 'candidates', 'save_output')
+    data_path = args.candidates_path
     test_set = ReRankingDataset(data_path, args.model_type, start_idx = 128060 , num_data=num_data , is_test=True, maxlen=512, is_sorted=False, maxnum=args.max_num, is_untok=True, device=args.gpuid[0])
     dataloader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, collate_fn=test_set.collate_fn)
     # build models
@@ -191,7 +192,8 @@ def run(rank, args):
     print(f"GPU ID: {gpuid}, is mp: {is_mp}")
     #data/candidates/save_output
     #105418
-    data_path = os.path.join(PATH, 'data', 'candidates', 'save_output')
+    # data_path = os.path.join(PATH, 'data', 'candidates', 'save_output')
+    data_path = args.candidates_path
     train_set = ReRankingDataset(data_path, args.model_type, start_idx = 0, num_data = args.num_train,maxlen=args.max_len, maxnum=args.max_num, device=gpuid)
     val_set = ReRankingDataset(data_path, args.model_type, start_idx =105418 , num_data = args.num_val,is_test=True, maxlen=512, is_sorted=False, maxnum=args.max_num, device=gpuid)
     if is_mp:
@@ -304,6 +306,7 @@ if __name__ ==  "__main__":
     parser.add_argument("-l", "--log", action="store_true")
     parser.add_argument("-p", "--port", type=int, default=12355)
     parser.add_argument("--model_pt", default="", type=str)
+    parser.add_argument("--candidates_path", default="", type=str)
     parser.add_argument("--encode_mode", default=None, type=str)
     parser.add_argument("--num_train", default=105418, type=int)
     parser.add_argument("--num_val", default=22642, type=int)
