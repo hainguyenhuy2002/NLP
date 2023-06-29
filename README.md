@@ -18,7 +18,7 @@ python generate_candidates.py
 --save_folder <save folder>
 ```
 **Train SimCLS**   
-Note that checkpoint path: `SimCLS/checkpoints/.../scorer.pth`   
+***Note:*** SimCLS will generate checkpoint with path: `SimCLS/checkpoints/.../scorer.pth`   
 Example config:
 ```
 python main.py --cuda --gpuid 0 -l --val_step 500 --batch_size 2 --num_val 5000 --candidates_path <candidate folder>
